@@ -7,12 +7,15 @@ Agent generated with `agents-cli` version `1.10.0`
 
 ```
 mastering-adk/
-├── app/         # Core agent code
-│   ├── agent.py               # Main agent logic
-│   ├── fast_api_app.py        # FastAPI Backend server
+├── .agents/skills/            # Project-scoped ADK skills (installed via skills.sh)
+├── app/                       # Core agent code
+│   ├── agent.py               # Main agent logic (root_agent = mastering_adk)
+│   ├── fast_api_app.py        # FastAPI Backend server + A2A routes
 │   └── app_utils/             # App utilities and helpers
-├── tests/                     # Unit, integration, and load tests
+├── tests/                     # Unit, integration, and eval suites
+├── agents-cli-manifest.yaml   # Project metadata for agents-cli
 ├── GEMINI.md                  # AI-assisted development guide
+├── skills-lock.json           # Lockfile for project-scoped skills
 └── pyproject.toml             # Project dependencies
 ```
 
@@ -23,26 +26,37 @@ mastering-adk/
 Before you begin, ensure you have:
 - **uv**: Python package manager (used for all dependency management in this project) - [Install](https://docs.astral.sh/uv/getting-started/installation/) ([add packages](https://docs.astral.sh/uv/concepts/dependencies/) with `uv add <package>`)
 - **agents-cli**: Agents CLI - Install with `uv tool install google-agents-cli`
+- **Node.js / npx**: Used by `skills.sh` (`npx skills`) to manage agent skills in `.agents/skills/`
 - **Google Cloud SDK**: For GCP services - [Install](https://cloud.google.com/sdk/docs/install)
 
 
 ## Quick Start
 
-Install `agents-cli` and its skills if not already installed:
+Install the `agents-cli` tool and project-scoped skills (into `.agents/skills/` and `skills-lock.json`):
 
 ```bash
-uvx google-agents-cli setup
+# 1. Install agents-cli globally via uv
+uv tool install google-agents-cli
+
+# 2. Install/update the 7 official ADK skills at the workspace level (uses npx skills under the hood)
+agents-cli setup --workspace --skip-auth
+# Equivalent direct skills.sh command:
+# npx skills add https://github.com/google/agents-cli -y
 ```
 
-Install required packages:
+Install required Python packages:
 
 ```bash
 agents-cli install
 ```
 
-Test the agent with a local web server:
+Configure authentication in `.env` (for example with `GEMINI_API_KEY`) and test the agent:
 
 ```bash
+# Non-interactive single-prompt test in terminal
+agents-cli run "What is the weather and current time in San Francisco?"
+
+# Interactive local web playground
 agents-cli playground
 ```
 
@@ -53,12 +67,17 @@ You can also use features from the [ADK](https://adk.dev/) CLI with `uv run adk`
 | Command              | Description                                                                                 |
 | -------------------- | ------------------------------------------------------------------------------------------- |
 | `agents-cli install` | Install dependencies using uv                                                         |
+| `agents-cli setup --workspace --skip-auth` | Install the ADK skills suite into `.agents/skills/` (workspace scope) |
+| `agents-cli update --workspace -y` | Update workspace skills in `.agents/skills/` to their latest versions |
+| `agents-cli info`    | Show project configuration, paths, and installed skills                               |
+| `agents-cli run "<prompt>"` | Run the agent with a single prompt from the terminal (non-interactive)         |
 | `agents-cli playground` | Launch local development environment                                                  |
 | `agents-cli lint`    | Run code quality checks                                                               |
 | `agents-cli eval`    | Evaluate agent behavior (generate, grade, analyze, and more — see `agents-cli eval --help`) |
 | `uv run pytest tests/unit tests/integration` | Run unit and integration tests                                                        |
 | `agents-cli deploy`  | Deploy agent to Agent Runtime                                                                |
-| `agents-cli publish gemini` | Register deployed agent with Gemini                                    || [A2A Inspector](https://github.com/a2aproject/a2a-inspector) | Launch A2A Protocol Inspector                                                        |
+| `agents-cli publish gemini` | Register deployed agent with Gemini                                    |
+| [A2A Inspector](https://github.com/a2aproject/a2a-inspector) | Launch A2A Protocol Inspector                                                        |
 
 ## 🛠️ Project Management
 

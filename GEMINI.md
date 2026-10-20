@@ -1,11 +1,42 @@
-# Coding Agent Guide
+# Coding Agent Guide (`mastering-adk`)
 
-## Prerequisites
+## Project Overview
+
+- **Project Name**: `mastering-adk` (manifest: `agents-cli-manifest.yaml`)
+- **Root Agent Name**: `mastering_adk` (`app/agent.py` — must stay in sync with `root_agent_name` in `agents-cli-manifest.yaml`)
+- **Framework**: Google ADK (`google-adk`) + FastAPI server (`app/fast_api_app.py`) with A2A protocol enabled
+- **Local Auth**: Configured via `.env` (`GEMINI_API_KEY` or Vertex AI credentials). `app/fast_api_app.py` uses `load_dotenv(override=True)` so `.env` takes precedence over inherited shell variables.
+
+## Prerequisites & Project-Scoped Skills (`skills.sh`)
 
 Install the CLI (one-time):
 ```bash
 uv tool install google-agents-cli
 ```
+
+Install or update the official `google-agents-cli` skills **strictly at the project/workspace level** (`.agents/skills/` + `skills-lock.json`, powered by `skills.sh` / `npx skills` under the hood):
+```bash
+# Via agents-cli (recommended):
+agents-cli setup --workspace --skip-auth
+
+# Or directly via skills.sh:
+npx skills add https://github.com/google/agents-cli -y
+
+# To update workspace skills later:
+agents-cli update --workspace -y
+```
+
+### Installed Project Skills (`.agents/skills/`)
+
+| Skill | Purpose |
+|-------|---------|
+| `google-agents-cli-workflow` | Development workflow, phases, and operational rules |
+| `google-agents-cli-scaffold` | Project creation (`scaffold create`), enhancement (`scaffold enhance`), and upgrades |
+| `google-agents-cli-adk-code` | ADK Python/Go patterns: `Agent`, tools, `ToolContext`, callbacks, plugins, multi-agent, Workflow API, Live API |
+| `google-agents-cli-eval` | Evaluation methodology, dataset schema (`tests/eval/`), metrics, and the eval-fix loop |
+| `google-agents-cli-deploy` | Deployment targets (`agent_runtime`, `cloud_run`, `gke`), Terraform, and CI/CD |
+| `google-agents-cli-observability` | Cloud Trace, Cloud Logging, and BigQuery Agent Analytics |
+| `google-agents-cli-publish` | Publishing deployed agents to Gemini Enterprise / Agent Garden |
 
 ---
 
@@ -33,6 +64,8 @@ Ask the user: Option A (simple single-project) or Option B (full CI/CD pipeline 
 
 | Command | Purpose |
 |---------|---------|
+| `agents-cli info` | Show project configuration, paths, and installed skills |
+| `agents-cli run "<prompt>"` | Non-interactive single-prompt execution for smoke testing |
 | `agents-cli playground` | Interactive local testing |
 | `uv run pytest tests/unit tests/integration` | Run unit and integration tests |
 | `agents-cli eval dataset synthesize` | Synthesize multi-turn eval scenarios for your agent |
