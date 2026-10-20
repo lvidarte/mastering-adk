@@ -1,7 +1,8 @@
 # mastering-adk
 
-Simple ReAct agent
-Agent generated with `agents-cli` version `1.10.0`
+Hands-on project for exploring **Google Agent Development Kit (ADK)** patterns, tools, state management, multi-agent orchestration, evaluation, and A2A interoperability.
+
+Scaffolded and managed with [**Google Agents CLI (`agents-cli`)**](https://google.github.io/agents-cli/) (`v1.10.0`) — Google's unified Agent Development Lifecycle toolchain for scaffolding, testing, evaluating, and deploying production-ready AI agents on Google Cloud ([Official Docs](https://google.github.io/agents-cli/) · [GitHub Repository](https://github.com/google/agents-cli)).
 
 ## Project Structure
 
@@ -25,7 +26,7 @@ mastering-adk/
 
 Before you begin, ensure you have:
 - **uv**: Python package manager (used for all dependency management in this project) - [Install](https://docs.astral.sh/uv/getting-started/installation/) ([add packages](https://docs.astral.sh/uv/concepts/dependencies/) with `uv add <package>`)
-- **agents-cli**: Agents CLI - Install with `uv tool install google-agents-cli`
+- **agents-cli**: Google's unified Agent Development Lifecycle CLI for building, evaluating, and deploying ADK agents ([Official Site](https://google.github.io/agents-cli/) · [GitHub Repo](https://github.com/google/agents-cli)) - Install with `uv tool install google-agents-cli`
 - **Node.js / npx**: Used by `skills.sh` (`npx skills`) to manage agent skills in `.agents/skills/`
 - **Google Cloud SDK**: For GCP services - [Install](https://cloud.google.com/sdk/docs/install)
 

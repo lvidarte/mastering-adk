@@ -2,9 +2,12 @@
 
 ## Project Overview
 
+`mastering-adk` is a hands-on project for exploring Google Agent Development Kit (ADK) capabilities, patterns, evaluation, and deployment workflows.
+
 - **Project Name**: `mastering-adk` (manifest: `agents-cli-manifest.yaml`)
 - **Root Agent Name**: `mastering_adk` (`app/agent.py` — must stay in sync with `root_agent_name` in `agents-cli-manifest.yaml`)
 - **Framework**: Google ADK (`google-adk`) + FastAPI server (`app/fast_api_app.py`) with A2A protocol enabled
+- **Toolchain**: [**Google Agents CLI (`agents-cli`)**](https://google.github.io/agents-cli/) — Google's unified Agent Development Lifecycle CLI for scaffolding, local playground/smoke testing, systematic evaluation, infrastructure provisioning, and deployment ([Official Site](https://google.github.io/agents-cli/) · [GitHub Repo](https://github.com/google/agents-cli))
 - **Local Auth**: Configured via `.env` (`GEMINI_API_KEY` or Vertex AI credentials). `app/fast_api_app.py` uses `load_dotenv(override=True)` so `.env` takes precedence over inherited shell variables.
 
 ## Prerequisites & Project-Scoped Skills (`skills.sh`)
