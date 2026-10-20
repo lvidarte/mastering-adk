@@ -1,4 +1,4 @@
-# adk-test
+# mastering-adk
 
 Simple ReAct agent
 Agent generated with `agents-cli` version `1.10.0`
@@ -6,7 +6,7 @@ Agent generated with `agents-cli` version `1.10.0`
 ## Project Structure
 
 ```
-adk-test/
+mastering-adk/
 ├── app/         # Core agent code
 │   ├── agent.py               # Main agent logic
 │   ├── fast_api_app.py        # FastAPI Backend server

@@ -63,7 +63,7 @@ root_agent = Agent(
     # from the project `name:` recorded there, and telemetry reports it as
     # gen_ai.agent.name. Renaming the agent only here makes the two disagree,
     # and anything selecting traces by name stops finding this agent's.
-    name="adk_test",
+    name="mastering_adk",
     model=Gemini(
         model=MODEL,
         retry_options=types.HttpRetryOptions(attempts=3),

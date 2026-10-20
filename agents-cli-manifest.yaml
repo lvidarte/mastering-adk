@@ -1,4 +1,4 @@
-name: "adk-test"
+name: "mastering-adk"
 acli_version: "1.10.0"
 agent_directory: "app"
 region: 'us-east1'
@@ -10,7 +10,7 @@ create_params:
   # The ADK name of the root agent, as rendered into the agent source. Rename
   # the agent and you must change it in both places: telemetry reports this as
   # gen_ai.agent.name, and it is what agents-cli reports for the project.
-  root_agent_name: "adk_test"
+  root_agent_name: "mastering_adk"
   deployment_target: "agent_runtime"
   session_type: "in_memory"
   cicd_runner: "skip"

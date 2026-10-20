@@ -1,5 +1,5 @@
 # Project name used for resource naming
-project_name = "adk-test"
+project_name = "mastering-adk"
 
 # Your Google Cloud project id
 project_id = "cloutfit-dev"

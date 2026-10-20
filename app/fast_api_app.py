@@ -71,8 +71,8 @@ app: FastAPI = get_fast_api_app(
     otel_to_cloud=otel_to_cloud,
     lifespan=lifespan,
 )
-app.title = "adk-test"
-app.description = "API for interacting with the Agent adk-test"
+app.title = "mastering-adk"
+app.description = "API for interacting with the Agent mastering-adk"
 
 # Proxy routes so the Google Cloud console playground (reasoning_engine SDK) can
 # talk to this agent alongside the native adk_api routes.
