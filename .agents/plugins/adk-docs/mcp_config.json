@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "adk-docs-mcp": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "mcpdoc",
+        "--with",
+        "mcp<2",
+        "mcpdoc",
+        "--urls",
+        "AgentDevelopmentKit:https://adk.dev/llms.txt",
+        "--transport",
+        "stdio"
+      ]
+    }
+  }
+}

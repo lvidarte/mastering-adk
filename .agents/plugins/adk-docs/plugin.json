@@ -1,0 +1,8 @@
+{
+  "name": "adk-docs",
+  "version": "0.0.1",
+  "description": "Project-scoped MCP server providing live access to official Google Agent Development Kit (ADK) documentation via llms.txt.",
+  "author": {
+    "name": "Leo Vidarte"
+  }
+}

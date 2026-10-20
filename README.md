@@ -2,13 +2,15 @@
 
 Hands-on project for exploring **Google Agent Development Kit (ADK)** patterns, tools, state management, multi-agent orchestration, evaluation, and A2A interoperability.
 
-Scaffolded and managed with [**Google Agents CLI (`agents-cli`)**](https://google.github.io/agents-cli/) (`v1.10.0`) — Google's unified Agent Development Lifecycle toolchain for scaffolding, testing, evaluating, and deploying production-ready AI agents on Google Cloud ([Official Docs](https://google.github.io/agents-cli/) · [GitHub Repository](https://github.com/google/agents-cli)).
+Scaffolded and managed with [**Google Agents CLI (`agents-cli`)**](https://google.github.io/agents-cli/) (`v1.10.0`) — Google's unified Agent Development Lifecycle toolchain for scaffolding, testing, evaluating, and deploying production-ready AI agents on Google Cloud ([Official Docs](https://google.github.io/agents-cli/) · [GitHub Repository](https://github.com/google/agents-cli) · [ADK Coding with AI Guide](https://adk.dev/tutorials/coding-with-ai/#agents-cli)).
 
 ## Project Structure
 
 ```
 mastering-adk/
-├── .agents/skills/            # Project-scoped ADK skills (installed via skills.sh)
+├── .agents/
+│   ├── plugins/adk-docs/      # Project-scoped plugin exposing the ADK Docs MCP server
+│   └── skills/                # Project-scoped ADK skills (installed via skills.sh)
 ├── app/                       # Core agent code
 │   ├── agent.py               # Main agent logic (root_agent = mastering_adk)
 │   ├── fast_api_app.py        # FastAPI Backend server + A2A routes
@@ -20,7 +22,7 @@ mastering-adk/
 └── pyproject.toml             # Project dependencies
 ```
 
-> 💡 **Tip:** Use [Antigravity CLI](https://antigravity.google/) for AI-assisted development - project context is pre-configured in `GEMINI.md`.
+> 💡 **Tip:** Use [Antigravity CLI](https://antigravity.google/) for AI-assisted development - project context is pre-configured in `GEMINI.md` alongside project-scoped skills and the `adk-docs` MCP plugin (see [ADK Coding with AI](https://adk.dev/tutorials/coding-with-ai/#agents-cli)).
 
 ## Requirements
 
@@ -43,6 +45,19 @@ uv tool install google-agents-cli
 agents-cli setup --workspace --skip-auth
 # Equivalent direct skills.sh command:
 # npx skills add https://github.com/google/agents-cli -y
+```
+
+### Project-Scoped ADK Docs MCP Plugin (`.agents/plugins/adk-docs/`)
+
+Following the [ADK Coding with AI guide](https://adk.dev/tutorials/coding-with-ai/#agents-cli), this repository includes a workspace-scoped Antigravity plugin in `.agents/plugins/adk-docs/`:
+
+- `.agents/plugins/adk-docs/plugin.json` — Declares the local `adk-docs` (`v0.0.1`) plugin.
+- `.agents/plugins/adk-docs/mcp_config.json` — Configures the `adk-docs-mcp` stdio server via `uvx` (`mcpdoc`) backed by [`https://adk.dev/llms.txt`](https://adk.dev/llms.txt).
+
+Validate the plugin at any time with:
+
+```bash
+agy plugin validate .agents/plugins/adk-docs --strict
 ```
 
 Install required Python packages:
