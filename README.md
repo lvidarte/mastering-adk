@@ -15,6 +15,7 @@ mastering-adk/
 │   ├── agent.py               # Main agent logic (root_agent = mastering_adk)
 │   ├── fast_api_app.py        # FastAPI Backend server + A2A routes
 │   └── app_utils/             # App utilities and helpers
+├── docs/                      # Detailed architecture & code tour documentation (in Spanish)
 ├── tests/                     # Unit, integration, and eval suites
 ├── agents-cli-manifest.yaml   # Project metadata for agents-cli
 ├── GEMINI.md                  # AI-assisted development guide
